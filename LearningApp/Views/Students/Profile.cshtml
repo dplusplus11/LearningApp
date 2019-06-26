@@ -1,0 +1,43 @@
+﻿@model LearningApp.Models.Student
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main role="main">
+    <section class="container">
+        <div class="row mx-auto mt-4 mb-3">
+            <div class="col-lg-6 col-md-12 col-sm-12 bg-white">
+                <img src="@Url.Content("~/Content/Images/profile.png")" class="mx-auto d-block img-thumbnail" />
+                <div class="row mx-auto d-block mb-3">
+                    <div class="col-lg-6 col-sm-12">
+                        <h4 class="m-1">Username:</h4>
+                        <p class="m-1">@Model.Username</p>
+                    </div>
+                    <div class="col-lg-6 col-sm-12">
+                        <h4 class="m-1">Location </h4>
+                        <p class="m-1">@Model.Location</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="row bg-light p-3 m-3" >
+            <div class="col-lg-4 col-sm-12">
+                <p class="m-1">Github:</p>
+                <p class="m-1">@Model.GitHub</p>
+            </div>
+            <div class="col-lg-4 col-sm-12">
+                <p class="m-1">Birthdate: </p>
+                <p class="m-1">@Model.BirthDate</p>
+            </div>
+            <div class="col-lg-4 col-sm-12">
+                @Html.ActionLink("Edit", "Edit", "Students", new { id = Model.Id }, new { @class = "btn btn-secondary m-1" })
+                @Html.ActionLink("Delete", "Delete", "Students", new { id = Model.Id }, new { @class = "btn btn-secondary m-1" })
+            </div>
+        </div>
+    </section>
+    
+</main>
+

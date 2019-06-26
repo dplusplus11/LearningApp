@@ -1,0 +1,22 @@
+﻿@model LearningApp.Models.Enrolment
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h4 class="mb-4">Are you sure you want to unenroll @Model.Student.Name?</h4>
+<div>
+
+    @using (Html.BeginForm("DeletionConfirmed", "Enrolments"))
+    {
+        @Html.AntiForgeryToken()
+
+        <div>
+            @Html.ActionLink("Confirm", "DeletionConfirmed", "Enrolments", new { sid = Model.StudentID, cid=Model.CourseID }, new { @class = "btn btn-secondary mt-4" })
+        </div>
+    }
+</div>
+

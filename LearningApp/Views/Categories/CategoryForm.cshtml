@@ -1,0 +1,39 @@
+﻿@model LearningApp.ViewModels.CategoryViewModel
+@{
+    ViewBag.Title = "CategoryForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Category </h2>
+@Html.ValidationSummary()
+@using (Html.BeginForm("Save", "Categories"))
+{
+<div class="form-group">
+    @Html.LabelFor(m => m.Category.Name)
+    @Html.TextBoxFor(m => m.Category.Name, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Category.Name)
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Category.Description)
+    @Html.TextAreaFor(m => m.Category.Description, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Category.Description)
+</div>
+
+<div class="form-group">
+    @Html.Label("What will you learn: ")
+    @Html.TextAreaFor(m => m.Category.WhatWillYouLearn, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Category.WhatWillYouLearn)
+</div>
+
+    @Html.HiddenFor(m => m.Category.Id)
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-secondary pr-4 pl-4">Save</button>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/Scripts/jquery.validate.js")
+}
+
+

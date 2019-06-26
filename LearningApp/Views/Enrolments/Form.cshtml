@@ -1,0 +1,53 @@
+﻿@model LearningApp.ViewModels.EnrolmentViewModel
+@{
+    ViewBag.Title = "Enroll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Enrollment </h2>
+@using (Html.BeginForm("Save", "Enrolments"))
+{
+<div class="form-group">
+    @Html.Label("Student")
+    @Html.DropDownListFor(m => m.Enrolment.StudentID, new SelectList(Model.Students, "Id", "Name"), "Select student", new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Enrolment.StudentID)
+</div>
+<div class="form-group">
+    @Html.Label("Course")
+    @Html.DropDownListFor(m => m.Enrolment.CourseID, new SelectList(Model.Courses, "Id", "Name"), "Select course", new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Enrolment.CourseID)
+</div>
+<div class="form-group">
+    @Html.Label("Ennrolled At")
+    @Html.EditorFor(m => m.Enrolment.EnrolledAt, new { @class = "form-control", id = "datepicker" })
+    @Html.ValidationMessageFor(m => m.Enrolment.EnrolledAt)
+</div>
+<div class="form-group">
+    @Html.Label("Choose plan")
+    @Html.DropDownListFor(m => m.Enrolment.PlanID, new SelectList(Model.Plans, "Id", "Name"), "Select plan", new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Enrolment.PlanID)
+</div>
+
+
+    @Html.HiddenFor(m => m.Enrolment.StudentID)
+    @Html.HiddenFor(m => m.Enrolment.CourseID)
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-secondary pl-4 pr-4">Save</button>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/Scripts/jquery.validate.js")
+    <script>
+        $(document).ready(function () {
+            $("#Enrolment_EnrolledAt").datepicker({
+                dateFormat: "dd.mm.yy",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-60:+0"
+
+            });
+        });
+    </script>
+}

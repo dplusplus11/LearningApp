@@ -1,0 +1,24 @@
+﻿@model LearningApp.Models.Student
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h4 class="mb-4">Are you sure you want to delete @Model.Name ?</h4>
+<div>
+
+    @using (Html.BeginForm("DeletionConfirmed", "Students"))
+    {
+        @Html.AntiForgeryToken()
+
+        <div>
+            @Html.ActionLink("Confirm", "DeletionConfirmed", "Students", new { id = Model.Id }, new { @class = "btn btn-secondary mt-4" })
+        </div>
+    }
+</div>
+
+
+

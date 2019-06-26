@@ -1,0 +1,70 @@
+﻿
+@model LearningApp.ViewModels.CourseViewModel
+@{
+    ViewBag.Title = "Upload";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Upload the new Course </h2>
+
+
+<div class="form-group">
+    @Html.LabelFor(m => m.Course.Name)
+    @Html.TextBoxFor(m => m.Course.Name, new { @class = "form-control courseName" })
+    @Html.ValidationMessageFor(m => m.Course.Name)
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Course.Introduction)
+    @Html.TextBoxFor(m => m.Course.Introduction, new { @class = "form-control introduction" })
+    @Html.ValidationMessageFor(m => m.Course.Introduction)
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Course.TakeAwaySkills)
+    @Html.TextBoxFor(m => m.Course.TakeAwaySkills, new { @class = "form-control takeAwaySkills" })
+    @Html.ValidationMessageFor(m => m.Course.TakeAwaySkills)
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Course.Prerequisites)
+    @Html.TextBoxFor(m => m.Course.Prerequisites, new { @class = "form-control prerequisites" })
+    @Html.ValidationMessageFor(m => m.Course.Prerequisites)
+</div>
+<div class="form-group">
+    @Html.Label("Language")
+    @Html.DropDownListFor(m => m.Course.LanguageId, new SelectList(Model.Languages, "Id", "Name"), "Select language", new { @class = "form-control languageId" })
+    @Html.ValidationMessageFor(m => m.Course.LanguageId)
+</div>
+<div class="form-group">
+    @Html.Label("Category")
+    @Html.DropDownListFor(m => m.Course.CategoryId, new SelectList(Model.Categories, "Id", "Name"), "Select category", new { @class = "form-control  categoryId" })
+    @Html.ValidationMessageFor(m => m.Course.CategoryId)
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Course.TimeToComplete)
+    @Html.TextBoxFor(m => m.Course.TimeToComplete, new { @class = "form-control timeToComplete" })
+    @Html.ValidationMessageFor(m => m.Course.TimeToComplete)
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Course.WhyLearn)
+    @Html.TextAreaFor(m => m.Course.WhyLearn, new { @class = "form-control whyLearn" })
+    @Html.ValidationMessageFor(m => m.Course.WhyLearn)
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Course.ProCourse)
+    @Html.EditorFor(m => m.Course.ProCourse, new { htmlAttributes = new { @type = "number", @min = "0", @step="1", @max = "1", @class = "form-control proCourse" } })
+    @Html.ValidationMessageFor(m => m.Course.ProCourse)
+</div>
+
+@Html.HiddenFor(m => m.Course.Id)
+@Html.AntiForgeryToken()
+<button id="btn-upload" type="submit" class="btn btn-secondary">Upload</button>
+
+
+@section scripts
+{
+    @Scripts.Render("~/Scripts/jquery.validate.js")
+    @Scripts.Render("~/Scripts/CourseAjax.js")
+
+}
+
+

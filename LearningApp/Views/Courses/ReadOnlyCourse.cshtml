@@ -1,0 +1,60 @@
+﻿@model LearningApp.Models.Course
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    var className = Model.ProCourse == 0 ? "d-none" : "mr-1";
+}
+<main id="main" role="main">
+    <section id="course_@Model.LanguageId" class=" course d-flex justify-content-center align-items-center">
+
+        <div class="container bg-transparent text-white text-center">
+            <h3 style="display: inline-block" class="display-2 m-5">@Model.Name </h3>
+            <span style="vertical-align: text-bottom; font-size: 1em;" class="@className badge badge-warning text-dark p-3">PRO_ </span>
+            <p class="lead d-none d-md-block m-5">@Model.Introduction</p>
+            <button class="btn btn-lg btn-warning start px-5" data-toggle="modal">
+                @Html.ActionLink("Start", "New", "Enrolments", null, new { @class = "btn font-weight-bold text-uppercase" })
+            </button>
+        </div>
+    </section>
+    <div class="container bg-white">
+        <h1 class="text-dark mb-5 mt-5">Overview</h1>
+        <section class="row">
+            <div class="col-9">
+                <section>
+                    <h4 class="text-secondary font-weight-bold mt-4"> Why Learn</h4>
+                    <p class="m-1 ">@Model.WhyLearn</p>
+                </section>
+                <section>
+                    <h4 class="text-secondary font-weight-bold mt-4"> Take Away Skills</h4>
+                    <p class="m-1 ">@Model.TakeAwaySkills</p>
+                </section>
+
+
+            </div>
+            <div class="col-3 ">
+                <div class="card mb-3 shadow-sm" style="height:200px;width:250px;">
+                    <div class="card-body mt-3 p-2">
+                        <p class="p-2 text-secondary text-center"> Time To Complete</p>
+                        <h2 class="p-2 text-center font-weight-bold">@Model.TimeToComplete</h2>
+                    </div>
+
+                </div>
+                <div class="card mb-3 shadow-sm" style="height:200px;width:250px;">
+                    <div class="card-body mt-3 p-2">
+                        <p class="p-2 text-center text-secondary"> Prerequisites</p>
+                        <h4 class="p-2 text-center font-weight-bold">@Model.Prerequisites</h4>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+    </div>
+</main>
+
+@section scripts
+{
+    @Scripts.Render("~/Scripts/CourseAjax.js")
+}

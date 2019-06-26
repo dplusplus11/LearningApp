@@ -1,0 +1,60 @@
+﻿@model LearningApp.ViewModels.NewStudentViewModel
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit Student</h2>
+@using (Html.BeginForm("Save", "Students"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Student.Name)
+        @Html.TextBoxFor(m => m.Student.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Student.Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Student.Username)
+        @Html.TextBoxFor(m => m.Student.Username, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Student.Username)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Student.Location)
+        @Html.TextBoxFor(m => m.Student.Location, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Student.Location)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Student.GitHub)
+        @Html.TextBoxFor(m => m.Student.GitHub, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Student.GitHub)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Student.BirthDate)
+        @Html.EditorFor(m => m.Student.BirthDate, null, new { @class = "form-control", id = "datepicker" })
+        @Html.ValidationMessageFor(m => m.Student.BirthDate)
+    </div>
+
+    @Html.HiddenFor(m => m.Student.Id)
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-secondary pl-4 pr-4">Save</button>
+}
+
+
+@section scripts
+{
+    @Scripts.Render("~/Scripts/jquery.validate.js")
+
+
+    <script>
+        $(document).ready(function () {
+            $("#Student_BirthDate").datepicker({
+                dateFormat: "dd.mm.yy",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-60:+0"
+
+            });
+        });
+    </script>
+}
+
+

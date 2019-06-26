@@ -1,0 +1,26 @@
+﻿@model LearningApp.ViewModels.LanguageViewModel
+@{
+    ViewBag.Title = "LanguageForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Language </h2>
+@using (Html.BeginForm("Save", "Languages"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Language.Name)
+        @Html.TextBoxFor(m => m.Language.Name, new { @class = "form-control" })
+    </div>
+
+
+    @Html.HiddenFor(m => m.Language.Id)
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-secondary pr-4 pl-4" >Save</button>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/Scripts/jquery.validate.js")
+}
+

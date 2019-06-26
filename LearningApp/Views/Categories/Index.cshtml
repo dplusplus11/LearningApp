@@ -1,0 +1,47 @@
+﻿@model IEnumerable<LearningApp.Models.Category>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@if (!Model.Any())
+{
+    <p>No categories.</p>
+}
+else
+{
+    <section class="container">
+        <div class="row">
+            <h2 class="text-secondary">Catalog</h2>
+
+            <div class="col-3">
+                <a href="@Url.Action("New", "Categories")" class="btn btn-secondary">
+                    New
+                </a>
+            </div>
+        </div>
+
+        @foreach (var category in Model)
+        {
+            <div id="catalog"class="row mt-3 ">
+
+                <hr />
+                <div class="col-lg-3 col-md-6 col-sm-12 bg-white ">
+                    <img src="@Url.Content("~/Content/Images/" + category.Name + ".png")" class="mx-auto d-block img-thumbnail" />
+
+                </div>
+
+                <div class="col-lg-9 col-sm-12">
+                    <h2>@Html.ActionLink(category.Name, "CategoryInfo", "Categories", new { id = category.Id }, new { @class="text-decoration-none mt-3 pt-2 text-secondary"})</h2>
+                    <p class="m-1">@category.Description</p>
+
+                </div>
+            </div>
+
+        }
+    </section>
+        
+}
+

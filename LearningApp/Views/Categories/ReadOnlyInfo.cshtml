@@ -1,0 +1,55 @@
+﻿@model LearningApp.ViewModels.CategoryViewModel
+
+@{
+    ViewBag.Title = "CategoryInfo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="d-flex justify-content-center align-items-center">
+    <div class="container text-center ">
+        @*<div class="col-lg-4 col-md-6 col-sm-12 bg-white">
+                @*<img src="@Url.Content("~/Content/Images/"+ Model.Category.Name + ".jpg")" class="mx-auto d-block img-thumbnail" />
+
+            </div>*@
+        <div class="col-lg-12 col-md-6 col-sm-12 bg-white">
+            <h1 class="display-3 m-5">@Model.Category.Name</h1>
+            <p class="lead d-none d-md-block m-1">@Model.Category.Description</p>
+        </div>
+
+    </div>
+
+</section>
+<div class="container bg-white">
+    <h1 class="text-dark mb-5 mt-5">Overview</h1>
+    <section class="row">
+        <div class="col-9">
+            <section>
+                <h4 class="text-secondary font-weight-bold mt-4"> What Will You Learn</h4>
+                <p class="mb-5">@Model.Category.WhatWillYouLearn</p>
+            </section>
+            </div>
+    </section>
+</div>
+    <section class="container">
+        <div class="row ">
+            @foreach (var course in Model.Courses)
+            {
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div id="card1" class="card mb-3 shadow-sm" style="height:240px;width:300px;">
+                        <div class="card-body mt-3 p-2">
+                            <p class="p-2">Course</p>
+                            <h3 class="p-2">@Html.ActionLink(course.Name, "Details", "Courses", new { id = course.Id }, new { @class = "text-decoration-none text-secondary stretched-link" })</h3>
+
+                        </div>
+
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+    
+
+
+
+

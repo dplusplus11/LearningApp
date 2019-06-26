@@ -1,0 +1,42 @@
+﻿@model IEnumerable<LearningApp.Models.Enrolment>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@if (!Model.Any())
+{
+    <p>We don't have any enrolments yet.</p>
+}
+else
+{
+<div  class="container">
+    @Html.ActionLink("New Enrolment", "New", "Enrolments", null, new { @class = "btn btn-secondary mt-5 mb-5" })
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Student</th>
+                <th>Course</th>
+                <th>Enrolled At</th>
+                <th>Edit </th>
+                <th>Delete </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var enrol in Model)
+            {
+            <tr>
+                <td>@enrol.Course.Name</td>
+                <td>@enrol.Student.Name</td>
+                <td>@enrol.EnrolledAt.Value.ToString("dd MMMM yyyy")</td>
+                <td>@Html.ActionLink("Edit", "Edit", "Enrolments", new { sid = enrol.StudentID, cid = enrol.CourseID }, null)</td>
+                <td>@Html.ActionLink("Delete", "Delete", "Enrolments", new { sid = enrol.StudentID, cid = enrol.CourseID }, null)</td>
+
+            </tr>
+            }
+        </tbody>
+    </table>
+    </div>
+}

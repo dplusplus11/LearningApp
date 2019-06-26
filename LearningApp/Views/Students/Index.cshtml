@@ -1,0 +1,57 @@
+﻿@model IEnumerable<LearningApp.Models.Student>
+@{
+
+
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@if (!Model.Any())
+{
+    <p>We don't have any students yet.</p>
+}
+else
+{
+
+    <div class="container">
+        <h2 class="mb-2">List of Students</h2>
+
+        <a href="@Url.Action("New", "Students")" class="btn  mb-3">
+            <i class="fa fa-plus-circle fa-4x"></i>
+        </a>
+        <table id="students" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Student</th>
+                    <th>Location</th>
+                    <th>Github</th>
+                    <th>Birthdate</th>
+                    <th>Joined</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var student in Model)
+                {
+                    <tr>
+                        <td>@Html.ActionLink(student.Name, "Profile", "Students", new { id = student.Id }, null)</td>
+                        <td>@student.Location</td>
+                        <td>@student.GitHub</td>
+                        <td>@student.BirthDate.Value.ToString("dd MMMM yyyy")</td>
+                        <td>@student.Joined.ToString("dd MMMM yyyy HH:mm")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+    @section scripts{
+        <script>
+            $(document).ready(function () {
+                $("#students").DataTable();
+            });
+        </script>
+    }
+
+

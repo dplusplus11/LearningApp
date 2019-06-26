@@ -1,0 +1,54 @@
+﻿@model IEnumerable<LearningApp.Models.Language>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@if (!Model.Any())
+{
+    <p>No languages.</p>
+}
+else
+{
+
+
+    <div class="container">
+        <h2 class="mb-2">Languages </h2>
+
+        <a href="@Url.Action("New", "Languages")" class="btn  mb-3">
+            <i class="fa fa-plus-circle fa-4x"></i>
+        </a>
+        <table id="langs" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Language</th>
+                    <th>Edit </th>
+                    <th>Delete </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var lang in Model)
+                {
+                    <tr>
+                        <td>@lang.Name</td>
+                        <td>@Html.ActionLink("Edit", "Edit", "Languages", new { id = lang.Id }, new { @class = "btn btn-secondary" })</td>
+                        <td>@Html.ActionLink("Delete", "Delete", "Languages", new { id = lang.Id }, new { @class = "btn btn-secondary" })</td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+}
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#langs").DataTable();
+        });
+    </script>
+}
+
